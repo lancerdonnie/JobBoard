@@ -150,5 +150,15 @@ export default {
       console.error(error);
       return jobs;
     }
+  },
+  async getMyJobs({ commit }, payload) {
+    try {
+      const res = await axios.get('/my/jobs', payload);
+      console.log(res);
+      return jobs;
+    } catch (error) {
+      console.error(error);
+      return jobs;
+    }
   }
 };
