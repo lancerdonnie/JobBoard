@@ -1,0 +1,57 @@
+<template>
+    <Modal @setShow="emit('setShow')">
+        <div class="px-16 pb-28">
+            <div>
+                <p class="text-primary font-semibold text-2xl tracking-[12%] leading-[28px]">New Job</p>
+                <p class="mt-5">
+                    <span
+                        class="text-sm text-tertiary tracking-[0.08em] leading-[16px]"
+                    >Kindly provide the required information to get matched with suitable candidates</span>
+                </p>
+            </div>
+            <form class="mt-10">
+                <Input label="Job Title" v-model="title" class="mb-11" />
+                <Input label="Company Name" v-model="company" class="mb-11" />
+                <Input label="location" v-model="location" class="mb-11" />
+                <Select label="What type of employment is it?" v-model="type" class="mb-11">
+                    <option value="Part">Part Remote</option>
+                    <option value="Temporarily Remote">Temporarily Remote</option>
+                    <option value="Fulltime">Fulltime</option>
+                    <option value="Part-time">Part-time</option>
+                </Select>
+                <Input label="Salary range" v-model="salary" class="mb-11" />
+                <Input label="Submission deadline" class="mb-11" />
+                <Select
+                    label="What sector is this job categorized under?"
+                    v-model="category"
+                    class="mb-11"
+                >
+                    <option value="Tech">Tech</option>
+                    <option value="Farming">Farming</option>
+                    <option value="Finance">Finance</option>
+                </Select>
+                <Button
+                    class="w-full h-[73px] text-[18px] bg-primary"
+                    spinnerSize="medium"
+                >Submit Application</Button>
+            </form>
+        </div>
+    </Modal>
+</template>
+
+<script setup>
+import { reactive, toRefs } from "vue"
+
+import Modal from "../../components/Modal.vue"
+import Input from "../../components/form/Input.vue"
+import Select from "../../components/form/Select.vue"
+import Button from "../../components/form/Button.vue";
+
+const props = defineProps({ job: { type: Object, default: {} } })
+const emit = defineEmits(["setShow"])
+
+const form = reactive({ title: "", company: "", description: "", category: "", benefits: "", location: "", salary: "", type: "", work_condition: "", ...props.job });
+const { title, description, company, category, benefits, salary, type, work_condition, location } = toRefs(form)
+
+
+</script>

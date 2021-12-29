@@ -25,11 +25,23 @@
                 >Jobs</p>
             </template>
         </Nav>
-        <Spinner v-if="loading" :color="colors.primary" class="h-24" />
-        <JobTable v-else-if="jobs.length" :jobs="jobs" />
-        <div v-else>No Jobs Available</div>
-        <Footer class="flex text-white">
-            <div class="flex-1 flex justify-between">
+        <div class="mt-[110px] px-[95px] bg-custom-5 leading-[21.09px] text-lg">
+            <div class="flex justify-between items-center">
+                <SearchShort class="w-[506px]" />
+                <Button
+                    class="bg-custom-3 px-[28px] py-[12.5px] rounded-[10px] text-white shadow-button flex items-center"
+                    @click="handleShow"
+                >
+                    <Plus class="mr-2" />
+                    <span class="font-semibold">New Job</span>
+                </Button>
+            </div>
+            <Spinner v-if="loading" :color="colors.primary" class="h-24" />
+            <JobTable v-else-if="jobs.length" :jobs="jobs" />
+            <div v-else>No Jobs Available</div>
+        </div>
+        <Footer class="flex text-white text-lg">
+            <div class="flex-1 flex justify-between items-center">
                 <Logo />
                 <p>
                     © 2021
@@ -42,6 +54,7 @@
             </div>
         </Footer>
     </div>
+    <CreateJob v-if="show" @setShow="handleShow" />
 </template>    
 
 
@@ -51,23 +64,32 @@ import Nav from '../../components/Nav.vue'
 import Footer from '../../components/Footer.vue'
 import Socials from '../../components/Socials.vue'
 import Spinner from '../../components/Spinner.vue'
+import SearchShort from '../../components/SearchShort.vue'
+import JobTable from './Table/JobTable.vue'
+import CreateJob from './CreateJob.vue'
+import Button from '../../components/form/Button.vue'
 
+import Plus from '../../assets/plus.svg'
 import Logo from '../../assets/logo.svg'
 import Notification from '../../assets/notification.svg'
 import ForEmployers from "../../assets/for_employers.svg"
 
 import { useStore } from "vuex"
-import { onMounted, reactive, toRefs } from "vue"
+import { onMounted, reactive, toRefs, ref } from "vue"
 import tailwindTheme from "../../utils/theme"
-import JobTable from './Table/JobTable.vue'
 
 
 const store = useStore()
 const state = reactive({ jobs: [], meta: {}, loading: false });
+const show = ref(false)
 
 const colors = tailwindTheme.theme.colors
 
 const { jobs, meta, loading } = toRefs(state)
+
+const handleShow = () => {
+    show.value = !show.value
+}
 
 onMounted(async () => {
     state.loading = true

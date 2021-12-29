@@ -58,7 +58,7 @@
 
         <Pagination :size="7" class="mt-10 mb-[117px] ml-[95px]" @click="handlePageClick" />
 
-        <Footer class="flex text-white">
+        <Footer class="flex text-white text-lg gap-20">
             <div class="flex-1 flex justify-between">
                 <div>
                     <Logo />
@@ -67,29 +67,13 @@
                         <span class="font-mont text-custom-1 ml-1">FindJobs</span>
                     </p>
                 </div>
-                <div>
-                    <p>Quick Links</p>
-                    <ul>
-                        <li>Home</li>
-                        <li>About</li>
-                        <li>Calendar</li>
-                        <li>Terms and condition</li>
-                    </ul>
-                </div>
+                <FooterLinks />
             </div>
             <div class="flex-1 flex justify-between">
-                <div>
-                    <p>Quick Links</p>
-                    <ul>
-                        <li>Home</li>
-                        <li>About</li>
-                        <li>Calendar</li>
-                        <li>Terms and condition</li>
-                    </ul>
-                </div>
-                <div>
-                    <p>Social Media</p>
-                    <Socials />
+                <FooterLinks />
+                <div class="text-center leading-[35.2px]">
+                    <p class="text-[22px]">Social Media</p>
+                    <Socials class="mt-1" />
                 </div>
             </div>
         </Footer>
@@ -101,6 +85,7 @@
 
 import { useStore } from "vuex"
 import { onMounted, reactive, ref, toRefs } from "vue"
+import tailwindTheme from "../../utils/theme"
 
 import Nav from '../../components/Nav.vue'
 import Search from '../../components/Search.vue'
@@ -110,13 +95,13 @@ import Spinner from '../../components/Spinner.vue'
 import Modal from '../../components/Modal.vue'
 import ApplyForm from './ApplyForm.vue'
 import Input from '../../components/form/Input.vue'
-import Logo from '../../assets/logo.svg'
-import AngleB from '../../assets/angle_b.svg'
-
-import tailwindTheme from "../../utils/theme"
 import JobCard from "./JobCard.vue"
 import JobDetails from "./JobDetails.vue"
+import FooterLinks from "./FooterLinks.vue"
 import Pagination from "../../components/Pagination.vue"
+
+import Logo from '../../assets/logo.svg'
+import AngleB from '../../assets/angle_b.svg'
 
 export default {
     components: {
@@ -132,7 +117,7 @@ export default {
         AngleB,
         JobCard,
         JobDetails,
-        Pagination
+        Pagination, FooterLinks
     },
     setup() {
         const store = useStore()

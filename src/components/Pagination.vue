@@ -26,7 +26,7 @@
 </template>
 
 <script setup>
-import { defineEmits, ref } from "vue"
+import { ref } from "vue"
 import AngleR from "../assets/angle_r.svg"
 import AngleL from "../assets/angle_l.svg"
 

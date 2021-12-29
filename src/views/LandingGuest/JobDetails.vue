@@ -12,13 +12,7 @@
             >Apply Via Find Job</Button>
         </div>
         <div class="h-[0.8px] bg-custom-3 w-full" />
-        <div class="p-[37px] text-sm">
-            In this role, you will be responsible for developing and
-            implementing user interface components using React.js concepts
-            and workflow such as Redux, Flux, and Webpack. You will also be
-            responsible for profiling and improving front-end performance
-            and documenting our front-end codebase.
-        </div>
+        <div class="p-[37px] text-sm">{{ details.description }}</div>
     </div>
 </template>
 

@@ -1,8 +1,8 @@
 <template>
-    <div class="flex">
-        <Instagram />
-        <Facebook />
-        <Twitter />
+    <div class="flex gap-[14.5px]">
+        <Instagram class="cursor-pointer" />
+        <Facebook class="cursor-pointer" />
+        <Twitter class="cursor-pointer" />
     </div>
 </template>
 

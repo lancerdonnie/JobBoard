@@ -3,12 +3,14 @@
         <label
             class="mb-13 text-lg tracking-[0.12em] leading-[21px] text-primary font-semibold"
         >{{ label }}</label>
-        <input
-            class="block bg-white rounded-[10px] border-primary border-[0.5px] w-full text-[18px] p-[23px]"
-            type="text"
+        <select
+            class="block bg-white rounded-[10px] border-primary border-[0.5px] w-full text-tertiary/80 text-[18px] p-[23px]"
             :value="props.modelValue"
-            @input="updateValue($event.target.value)"
-        />
+            @change="updateValue($event.target.value)"
+        >
+            <option value>Select Option</option>
+            <slot></slot>
+        </select>
     </div>
 </template>
 
