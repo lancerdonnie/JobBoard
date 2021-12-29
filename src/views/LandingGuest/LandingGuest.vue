@@ -19,57 +19,44 @@
             </template>
 
             <template v-slot:default>
-                <p class="text-white text-[40px] pl-4 pb-[129px]">Find Your Dream Job</p>
+                <p
+                    class="text-white text-[40px] pl-4 pb-[129px] font-semibold tracking-[0.12em] leading-[47px]"
+                >Find Your Dream Job</p>
             </template>
         </Nav>
         <Search class="relative mt-[-30px] mx-28 z-10" />
         <Spinner v-if="loading" :color="colors.primary" class="h-24" />
         <div v-else-if="jobs.length" class="mt-[110px] px-[95px] bg-custom-5">
-            <div>
+            <div
+                class="flex justify-between w-1/2 pr-[23px] text-tertiary leading-[21px] tracking-[0.05em]"
+            >
                 <span>showing {{ jobs.length }} results</span>
+                <span class="flex">
+                    <span class="text-tertiary/50">Sort by</span>
+                    <span class="flex items-center gap-1 cursor-pointer">
+                        : Latest
+                        <AngleB class="mt-1" />
+                    </span>
+                </span>
             </div>
-            <div class="flex gap-[46px]">
+            <div class="flex gap-[46px] mt-10">
                 <div class="flex-1">
-                    <div
-                        class="p-8 shadow-card mb-[35px] rounded-[10px]"
+                    <JobCard
                         v-for="job in jobs"
                         :key="job.id"
-                    >
-                        <div class="flex justify-between">
-                            <span>{{ job.title }}</span>
-                            <span>{{ job.salary }}</span>
-                        </div>
-                        <div>{{ job.location }}</div>
-                        <div>{{ job.description }}</div>
-                        <button
-                            class="ml-auto block bg-custom-3 px-[15.5px] py-[8px] rounded-[10px] text-white text-[14px]"
-                            @click="handleCardClick(job)"
-                        >see more</button>
-                    </div>
+                        :job="job"
+                        :selected="job.id === details?.id"
+                        @click="handleCardClick(job)"
+                    />
                 </div>
                 <div class="flex-1">
-                    <div v-if="details" class="shadow-details rounded-[10px]">
-                        <div class="p-[37px]">
-                            <div>{{ details.title }}</div>
-                            <div>{{ details.location }}</div>
-                            <button
-                                class="block bg-primary px-[36px] py-[10px] rounded-[10px] text-white text-[14px]"
-                                @click="handleShow"
-                            >Apply Via Find Job</button>
-                        </div>
-                        <div class="h-[0.8px] bg-custom-3 w-full" />
-                        <div class="p-[37px]">
-                            In this role, you will be responsible for developing and
-                            implementing user interface components using React.js concepts
-                            and workflow such as Redux, Flux, and Webpack. You will also be
-                            responsible for profiling and improving front-end performance
-                            and documenting our front-end codebase.
-                        </div>
-                    </div>
+                    <JobDetails v-if="details" :details="details" @click="handleShow" />
                 </div>
             </div>
         </div>
         <div v-else>No Jobs Available</div>
+
+        <Pagination :size="7" class="mt-10 mb-[117px] ml-[95px]" @click="handlePageClick" />
 
         <Footer class="flex text-white">
             <div class="flex-1 flex justify-between">
@@ -124,8 +111,12 @@ import Modal from '../../components/Modal.vue'
 import ApplyForm from './ApplyForm.vue'
 import Input from '../../components/form/Input.vue'
 import Logo from '../../assets/logo.svg'
+import AngleB from '../../assets/angle_b.svg'
 
 import tailwindTheme from "../../utils/theme"
+import JobCard from "./JobCard.vue"
+import JobDetails from "./JobDetails.vue"
+import Pagination from "../../components/Pagination.vue"
 
 export default {
     components: {
@@ -136,7 +127,12 @@ export default {
         Logo,
         Spinner,
         Modal,
-        Input, ApplyForm
+        Input,
+        ApplyForm,
+        AngleB,
+        JobCard,
+        JobDetails,
+        Pagination
     },
     setup() {
         const store = useStore()

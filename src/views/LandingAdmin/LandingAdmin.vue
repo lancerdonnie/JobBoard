@@ -20,61 +20,14 @@
             </template>
 
             <template v-slot:default>
-                <p class="text-white text-[40px] pl-4 pb-[72px]">Jobs</p>
+                <p
+                    class="text-white text-[40px] pl-4 pb-[72px] font-semibold tracking-[0.12em] leading-[47px]"
+                >Jobs</p>
             </template>
         </Nav>
-        <div v-if="jobs.length" class="mt-[110px] px-[95px] bg-custom-5">
-            <div class="flex justify-between items-center">
-                <SearchShort class="w-[506px]" />
-                <button
-                    class="bg-custom-3 px-[28px] py-[12.5px] rounded-[10px] text-white shadow-button flex items-center"
-                >
-                    <Plus />New Job
-                </button>
-            </div>
-            <div class="text-[18px] space-y-[8px] mt-10">
-                <div
-                    class="grid grid-cols-9 items-center bg-primary text-white rounded-[10px] h-[65px]"
-                >
-                    <div class></div>
-                    <div class="col-span-4">Job title</div>
-                    <div>Date Modified</div>
-                    <div>Candidates</div>
-                    <div></div>
-                    <div class="flex items-center">
-                        Filter
-                        <div class="h-[18px] w-[20px] ml-[10px]">
-                            <Filter />
-                        </div>
-                    </div>
-                </div>
-                <div
-                    class="grid grid-cols-9 items-center h-[65px] shadow-tr rounded-[10px]"
-                    v-for="job in jobs"
-                    :key="job.id"
-                >
-                    <div class="justify-self-center w-[10px] h-[10px] bg-custom-3 rounded-full"></div>
-                    <div class="col-span-4">{{ job.title }}</div>
-                    <div>
-                        {{
-                            date.main(job.updated_at)
-                        }}
-                    </div>
-                    <div>{{ job.candidates ?? 50 }}</div>
-                    <div>
-                        <button
-                            class="ml-auto block bg-custom-3 px-[15.5px] py-[8px] rounded-[10px] text-white text-[14px]"
-                        >Edit</button>
-                    </div>
-                    <div>
-                        <button
-                            class="ml-auto block bg-custom-3 px-[15.5px] py-[8px] rounded-[10px] text-white text-[14px]"
-                        >Delete</button>
-                    </div>
-                </div>
-            </div>
-            <Pagination size="7" class="mt-10 mb-[117px]" @click="handlePageClick" />
-        </div>
+        <Spinner v-if="loading" :color="colors.primary" class="h-24" />
+        <JobTable v-else-if="jobs.length" :jobs="jobs" />
+        <div v-else>No Jobs Available</div>
         <Footer class="flex text-white">
             <div class="flex-1 flex justify-between">
                 <Logo />
@@ -97,32 +50,30 @@
 import Nav from '../../components/Nav.vue'
 import Footer from '../../components/Footer.vue'
 import Socials from '../../components/Socials.vue'
-import SearchShort from '../../components/SearchShort.vue'
-import Pagination from '../../components/Pagination.vue'
+import Spinner from '../../components/Spinner.vue'
+
 import Logo from '../../assets/logo.svg'
-import Plus from '../../assets/plus.svg'
-import Filter from '../../assets/filter.svg'
 import Notification from '../../assets/notification.svg'
 import ForEmployers from "../../assets/for_employers.svg"
 
 import { useStore } from "vuex"
-import { onMounted, reactive, ref, toRefs } from "vue"
-import { date } from "../../utils"
+import { onMounted, reactive, toRefs } from "vue"
+import tailwindTheme from "../../utils/theme"
+import JobTable from './Table/JobTable.vue'
 
 
 const store = useStore()
-const state = reactive({ jobs: [], meta: {} });
+const state = reactive({ jobs: [], meta: {}, loading: false });
 
-const { jobs, meta } = toRefs(state)
-// const details = ref()
+const colors = tailwindTheme.theme.colors
 
-const handlePageClick = () => {
-
-}
+const { jobs, meta, loading } = toRefs(state)
 
 onMounted(async () => {
+    state.loading = true
     const { data, ...rest } = await store.dispatch("getMyJobs")
     state.jobs = data
     state.meta = rest.meta
+    state.loading = false
 });
 </script>

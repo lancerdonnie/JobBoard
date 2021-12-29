@@ -10,7 +10,8 @@ module.exports = {
           2: '#DD4033',
           3: '#EA5566',
           4: '#F57D7D',
-          5: '#F9FBFD'
+          5: '#F9FBFD',
+          6: '#0E0E10'
         }
       },
       boxShadow: {

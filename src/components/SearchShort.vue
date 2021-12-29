@@ -6,11 +6,12 @@
             <Search />
             <span class="ml-5">front end developer</span>
         </div>
-        <button class="bg-custom-3 px-[28px] py-[12.5px] rounded-[10px] text-white">Search</button>
+        <Button class="bg-custom-3 px-[28px] py-[12.5px] text-white">Search</Button>
     </div>
 </template>
 
 <script setup>
 import Search from '../assets/search.svg'
+import Button from './form/Button.vue';
 
 </script>

@@ -4,7 +4,7 @@
         @click="handleClick"
     >
         <div
-            class="flex flex-col w-11/12 sm:w-5/6 lg:w-1/2 max-w-2xl mx-auto rounded-lg border border-gray-300 shadow-xl h-full bg-custom-5"
+            class="flex flex-col w-11/12 sm:w-5/6 lg:w-1/2 max-w-2xl mx-auto rounded-lg shadow-xl h-full bg-custom-5"
         >
             <div class="flex justify-end p-6 rounded-tl-lg rounded-tr-lg">
                 <i @click="emit('setShow')" class="cursor-pointer">

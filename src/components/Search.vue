@@ -14,7 +14,7 @@
                     <span class="ml-5">Lagos, Nigeria</span>
                 </div>
             </div>
-            <button class="bg-custom-3 px-[28px] py-[12.5px] rounded-[10px] text-white">Search</button>
+            <Button class="bg-custom-3 px-[28px] py-[12.5px]">Search</Button>
         </div>
     </div>
 </template>
@@ -22,5 +22,6 @@
 <script setup>
 import Search from '../assets/search.svg'
 import Pointer from '../assets/pointer.svg'
+import Button from './form/Button.vue';
 
 </script>
