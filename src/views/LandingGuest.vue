@@ -2,6 +2,9 @@
 <template>
     <div class="bg-custom-5">
         <Nav>
+            <template v-slot:left-content>
+                <Logo />
+            </template>
             <template v-slot:right-content>
                 <ul class="flex items-center text-white text-lg">
                     <li class="mr-[30px] cursor-pointer">Jobs</li>
@@ -66,9 +69,9 @@
             <div class="flex-1 flex justify-between">
                 <div>
                     <Logo />
-                    <p>
+                    <p class="mt-[17px]">
                         © 2021
-                        <span>FindJobs</span>
+                        <span class="font-mont text-custom-1 ml-1">FindJobs</span>
                     </p>
                 </div>
                 <div>

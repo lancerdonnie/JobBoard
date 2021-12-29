@@ -2,15 +2,21 @@
 <template>
     <div class="bg-custom-5">
         <Nav>
+            <template v-slot:left-content>
+                <div>
+                    <Logo />
+                    <ForEmployers class="ml-5" />
+                </div>
+            </template>
             <template v-slot:right-content>
-                <ul class="flex items-center text-white text-lg">
-                    <li class="mr-[30px] cursor-pointer">Jobs</li>
-                    <li class="mr-[30px] cursor-pointer opacity-60">Company Review</li>
-                    <li class="mr-[17.5px] cursor-pointer opacity-60">Find Salaries</li>
-                    <li
-                        class="rounded-md cursor-pointer text-base font-extrabold p-[10px] bg-white text-primary"
-                    >Post Job</li>
-                </ul>
+                <div class="flex items-center text-white text-lg">
+                    <Notification />
+                    <img
+                        class="rounded-full h-[50px] w-[50px] ml-[17px]"
+                        src="https://ui-avatars.com/api/?name=Jide Adedeji"
+                        alt
+                    />
+                </div>
             </template>
 
             <template v-slot:default>
@@ -72,9 +78,9 @@
         <Footer class="flex text-white">
             <div class="flex-1 flex justify-between">
                 <Logo />
-                <p class="ml-[35px]">
+                <p>
                     © 2021
-                    <span>FindJobs</span>
+                    <span class="font-mont text-custom-1 ml-1">FindJobs</span>
                 </p>
                 <p class="ml-[35px]">Terms and condition</p>
             </div>
@@ -96,6 +102,8 @@ import Pagination from '../components/Pagination.vue'
 import Logo from '../assets/logo.svg'
 import Plus from '../assets/plus.svg'
 import Filter from '../assets/filter.svg'
+import Notification from '../assets/notification.svg'
+import ForEmployers from "../assets/for_employers.svg"
 
 import { useStore } from "vuex"
 import { onMounted, reactive, ref, toRefs } from "vue"

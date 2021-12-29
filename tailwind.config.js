@@ -4,7 +4,7 @@ module.exports = {
     extend: {
       colors: {
         primary: '#0F4A7B',
-        // secondary: '#FFCE00',
+        tertiary: '#3E3E40',
         custom: {
           1: '#62BECB',
           2: '#DD4033',
@@ -19,6 +19,10 @@ module.exports = {
         details: '0px 4px 17px rgba(0, 0, 0, 0.15)',
         button: '0px 4px 17px rgba(194, 32, 51, 0.25)',
         tr: '0px 4px 10px rgba(62, 62, 64, 0.1)'
+      },
+      fontFamily: {
+        gilroy: ['Gilroy', 'sans-serif'],
+        mont: ['Montserrat', 'sans-serif']
       }
     }
   },

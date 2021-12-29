@@ -1,7 +1,7 @@
 <template>
-    <nav class="bg-primary px-[100px] pt-[30px] relative overflow-hidden">
+    <nav class="bg-primary px-[100px] pt-[30px] relative overflow-x-clip">
         <div class="flex justify-between mb-[100px]">
-            <Logo />
+            <slot name="left-content"></slot>
             <slot name="right-content"></slot>
         </div>
         <Circles class="top-[112px]" />
