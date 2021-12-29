@@ -2,8 +2,8 @@ import { createWebHistory, createRouter } from 'vue-router';
 
 import store from '../store';
 
-import LandingGuest from '../views/LandingGuest.vue';
-import LandingAdmin from '../views/LandingAdmin.vue';
+import LandingGuest from '../views/LandingGuest/LandingGuest.vue';
+import LandingAdmin from '../views/LandingAdmin/LandingAdmin.vue';
 import Login from '../views/Login.vue';
 
 const routes = [

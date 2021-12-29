@@ -26,7 +26,7 @@
 </template>
 
 <script setup>
-import { defineProps, defineEmits, ref } from "vue"
+import { defineEmits, ref } from "vue"
 import AngleR from "../assets/angle_r.svg"
 import AngleL from "../assets/angle_l.svg"
 
@@ -34,9 +34,7 @@ const selected = ref(1)
 const offset = ref(0)
 const maxSize = 5
 
-
-
-const { size } = defineProps({
+defineProps({
     size: Number
 })
 

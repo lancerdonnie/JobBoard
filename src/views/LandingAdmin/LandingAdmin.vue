@@ -94,20 +94,20 @@
 
 
 <script setup>
-import Nav from '../components/Nav.vue'
-import Footer from '../components/Footer.vue'
-import Socials from '../components/Socials.vue'
-import SearchShort from '../components/SearchShort.vue'
-import Pagination from '../components/Pagination.vue'
-import Logo from '../assets/logo.svg'
-import Plus from '../assets/plus.svg'
-import Filter from '../assets/filter.svg'
-import Notification from '../assets/notification.svg'
-import ForEmployers from "../assets/for_employers.svg"
+import Nav from '../../components/Nav.vue'
+import Footer from '../../components/Footer.vue'
+import Socials from '../../components/Socials.vue'
+import SearchShort from '../../components/SearchShort.vue'
+import Pagination from '../../components/Pagination.vue'
+import Logo from '../../assets/logo.svg'
+import Plus from '../../assets/plus.svg'
+import Filter from '../../assets/filter.svg'
+import Notification from '../../assets/notification.svg'
+import ForEmployers from "../../assets/for_employers.svg"
 
 import { useStore } from "vuex"
 import { onMounted, reactive, ref, toRefs } from "vue"
-import { date } from "../utils"
+import { date } from "../../utils"
 
 
 const store = useStore()

@@ -7,7 +7,9 @@
             </template>
             <template v-slot:right-content>
                 <ul class="flex items-center text-white text-lg">
-                    <li class="mr-[30px] cursor-pointer">Jobs</li>
+                    <li class="mr-[30px] cursor-pointer">
+                        <router-link to="/jobs">Jobs</router-link>
+                    </li>
                     <li class="mr-[30px] cursor-pointer opacity-60">Company Review</li>
                     <li class="mr-[17.5px] cursor-pointer opacity-60">Find Salaries</li>
                     <li
@@ -21,7 +23,8 @@
             </template>
         </Nav>
         <Search class="relative mt-[-30px] mx-28 z-10" />
-        <div v-if="jobs.length" class="mt-[110px] px-[95px] bg-custom-5">
+        <Spinner v-if="loading" :color="colors.primary" class="h-24" />
+        <div v-else-if="jobs.length" class="mt-[110px] px-[95px] bg-custom-5">
             <div>
                 <span>showing {{ jobs.length }} results</span>
             </div>
@@ -51,6 +54,7 @@
                             <div>{{ details.location }}</div>
                             <button
                                 class="block bg-primary px-[36px] py-[10px] rounded-[10px] text-white text-[14px]"
+                                @click="handleShow"
                             >Apply Via Find Job</button>
                         </div>
                         <div class="h-[0.8px] bg-custom-3 w-full" />
@@ -65,6 +69,8 @@
                 </div>
             </div>
         </div>
+        <div v-else>No Jobs Available</div>
+
         <Footer class="flex text-white">
             <div class="flex-1 flex justify-between">
                 <div>
@@ -101,6 +107,7 @@
             </div>
         </Footer>
     </div>
+    <ApplyForm v-if="show" @setShow="handleShow" />
 </template>    
 
 <script>
@@ -108,35 +115,53 @@
 import { useStore } from "vuex"
 import { onMounted, reactive, ref, toRefs } from "vue"
 
-import Nav from '../components/Nav.vue'
-import Search from '../components/Search.vue'
-import Footer from '../components/Footer.vue'
-import Socials from '../components/Socials.vue'
-import Logo from '../assets/logo.svg'
+import Nav from '../../components/Nav.vue'
+import Search from '../../components/Search.vue'
+import Footer from '../../components/Footer.vue'
+import Socials from '../../components/Socials.vue'
+import Spinner from '../../components/Spinner.vue'
+import Modal from '../../components/Modal.vue'
+import ApplyForm from './ApplyForm.vue'
+import Input from '../../components/form/Input.vue'
+import Logo from '../../assets/logo.svg'
+
+import tailwindTheme from "../../utils/theme"
 
 export default {
     components: {
         Nav,
         Search,
         Footer,
-        Socials, Logo
+        Socials,
+        Logo,
+        Spinner,
+        Modal,
+        Input, ApplyForm
     },
     setup() {
         const store = useStore()
-        const state = reactive({ jobs: [], meta: {} });
+        const state = reactive({ jobs: [], meta: {}, loading: false });
+        const form = reactive({ first_name: "", last_name: "", email: "", phone: "", location: "", cv: "" });
         const details = ref()
+        const show = ref(false)
 
         onMounted(async () => {
+            state.loading = true
             const { data, ...rest } = await store.dispatch("getJobs")
             state.jobs = data
             state.meta = rest.meta
+            state.loading = false
         });
 
         const handleCardClick = (job) => {
             details.value = job
         }
 
-        return { ...toRefs(state), handleCardClick, details }
+        const handleShow = () => {
+            show.value = !show.value
+        }
+
+        return { ...toRefs(state), ...toRefs(form), handleCardClick, handleShow, show, details, colors: tailwindTheme.theme.colors }
     }
 }
 
