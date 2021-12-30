@@ -1,6 +1,6 @@
 <template>
     <div class="flex min-h-screen bg-custom-5">
-        <div class="bg-primary flex-1 pl-[82px] pt-[35px]">
+        <div class="bg-primary flex-1 pl-[82px] pt-[35px] md:hidden">
             <Logo />
             <ForEmployers class="ml-5" />
             <p

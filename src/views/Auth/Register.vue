@@ -1,6 +1,6 @@
 <template>
     <div class="flex min-h-screen bg-custom-5">
-        <div class="bg-primary flex-1 pl-[82px] pt-[35px]">
+        <div class="bg-primary flex-1 pl-[82px] pt-[35px] md:hidden">
             <Logo />
             <ForEmployers class="ml-5" />
             <p
@@ -23,7 +23,7 @@
             <Input class="w-full mt-[42px]" v-model="name" label="Name" />
             <Input class="w-full mt-[42px]" v-model="email" label="Email" />
             <Input class="w-full mt-[42px]" v-model="password" label="Password" type="password" />
-            <div class="mt-[40px] self-start flex items-center gap-4">
+            <div class="mt-[40px] self-start flex items-center gap-4 md:flex-col">
                 <Button
                     type="submit"
                     class="bg-primary font-extrabold px-[62.5px] py-[23px] text-white text-lg leading-[22px] tracking-[0.12em]"

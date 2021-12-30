@@ -29,13 +29,13 @@
         <SearchLocation
             v-model="search"
             @click="handleSearch"
-            class="relative mt-[-30px] mx-28 z-10"
+            class="relative mt-[-30px] mx-28 z-10 md:mx-1"
             :loading="searchLoading"
         />
         <Spinner v-if="loading" :color="colors.primary" class="h-24" />
-        <div v-else-if="jobs.data.length" class="mt-[110px] px-[95px] bg-custom-5">
+        <div v-else-if="jobs.data.length" class="mt-[110px] px-[95px] bg-custom-5 md:px-2">
             <div
-                class="flex justify-between w-1/2 pr-[23px] text-tertiary leading-[21px] tracking-[0.05em]"
+                class="flex justify-between w-1/2 pr-[23px] text-tertiary leading-[21px] tracking-[0.05em] md:flex-col"
             >
                 <span>showing {{ jobs.data.length }} results</span>
                 <span class="flex">
@@ -66,11 +66,11 @@
             v-else
         >No Jobs Available</div>
 
-        <Pagination :size="7" class="mt-10 mb-[117px] ml-[95px]" @click="handlePageClick" />
+        <Pagination :size="7" class="mt-10 mb-[117px] ml-[95px] md:ml-2" @click="handlePageClick" />
 
-        <Footer class="flex text-white text-lg gap-20">
-            <div class="flex-1 flex justify-between">
-                <div>
+        <Footer class="flex text-white text-lg gap-20 md:flex-col md:gap-0">
+            <div class="flex-1 flex justify-between md:flex-col md:items-center">
+                <div class="md:flex md:items-center md:justify-between">
                     <Logo />
                     <p class="mt-[17px]">
                         © 2021
@@ -79,9 +79,9 @@
                 </div>
                 <FooterLinks />
             </div>
-            <div class="flex-1 flex justify-between">
-                <FooterLinks />
-                <div class="text-center leading-[35.2px]">
+            <div class="flex-1 flex justify-between md:flex-col md:items-center">
+                <FooterLinks class="md:hidden" />
+                <div class="text-center leading-[35.2px] md:mt-4">
                     <p class="text-[22px]">Social Media</p>
                     <Socials class="mt-1" />
                 </div>

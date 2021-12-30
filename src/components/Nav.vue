@@ -1,5 +1,5 @@
 <template>
-    <nav class="bg-primary px-[100px] pt-[30px] relative overflow-x-clip">
+    <nav class="bg-primary px-[100px] pt-[30px] relative overflow-x-clip md:px-2">
         <div class="flex justify-between mb-[100px]">
             <slot name="left-content"></slot>
             <slot name="right-content"></slot>

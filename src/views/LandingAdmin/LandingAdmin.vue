@@ -26,8 +26,8 @@
                 >Jobs</p>
             </template>
         </Nav>
-        <div class="mt-[110px] px-[95px] bg-custom-5 leading-[21.09px] text-lg">
-            <div class="flex justify-between items-center">
+        <div class="mt-[110px] px-[95px] bg-custom-5 leading-[21.09px] text-lg md:px-2">
+            <div class="flex justify-between items-center md:flex-col">
                 <Search
                     class="w-[506px]"
                     v-model="search"
@@ -35,7 +35,7 @@
                     :loading="searchLoading"
                 />
                 <Button
-                    class="bg-custom-3 px-[28px] py-[12.5px] rounded-[10px] text-white shadow-button flex items-center"
+                    class="bg-custom-3 px-[28px] py-[12.5px] rounded-[10px] text-white shadow-button flex items-center md:mt-2"
                     @click="handleShow"
                 >
                     <Plus class="mr-2" />
@@ -49,16 +49,16 @@
                 v-else
             >No Jobs Available</div>
         </div>
-        <Footer class="flex text-white text-lg">
-            <div class="flex-1 flex justify-between items-center">
+        <Footer class="flex text-white text-lg md:flex-col">
+            <div class="flex-1 flex justify-between items-center md:flex-col">
                 <Logo />
-                <p>
+                <p class="md:mt-4">
                     © 2021
                     <span class="font-mont text-custom-1 ml-1">FindJobs</span>
                 </p>
-                <p class="ml-[35px]">Terms and condition</p>
+                <p class="ml-[35px] md:ml-0">Terms and condition</p>
             </div>
-            <div class="flex-1 flex justify-end">
+            <div class="flex-1 flex justify-end md:justify-center md:mt-4">
                 <Socials />
             </div>
         </Footer>

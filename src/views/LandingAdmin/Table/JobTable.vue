@@ -15,7 +15,7 @@
         </div>
         <JobTableRow v-for="job in jobs" :key="job.id" :job="job" />
     </div>
-    <Pagination :size="7" class="mt-10 mb-[117px]" @click="handlePageClick" />
+    <Pagination :size="7" class="mt-10 mb-[117px] md:ml-2" @click="handlePageClick" />
 </template>
 
 <script setup>

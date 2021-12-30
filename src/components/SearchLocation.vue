@@ -1,7 +1,7 @@
 <template>
     <Search>
         <div class="h-full flex flex-1 justify-between">
-            <div class="h-full flex items-center">
+            <div class="h-full flex items-center md:hidden">
                 <div class="h-full w-[1.5px] bg-custom-1" />
                 <div class="flex ml-5">
                     <Pointer />
