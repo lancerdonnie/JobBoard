@@ -20,7 +20,7 @@
 
 <script setup>
 import Pagination from '../../../components/Pagination.vue'
-import Filter from "@/assets/svg/filter.svg'
+import Filter from "@/assets/svg/filter.svg"
 import JobTableRow from "./JobTableRow.vue"
 
 defineProps({ jobs: Object })

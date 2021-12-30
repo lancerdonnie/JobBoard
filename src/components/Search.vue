@@ -22,7 +22,7 @@
 </template>
 
 <script setup>
-import Search from "@/assets/svg/search.svg'
+import Search from "@/assets/svg/search.svg"
 import Button from './form/Button.vue';
 
 defineProps({
