@@ -21,6 +21,9 @@
         <div class="justify-self-start">
             <Button
                 class="ml-auto block px-[15.5px] py-[8px] rounded-[10px] group-hover:text-custom-1 group-hover:rounded-none group-hover:border group-hover:border-custom-1 text-tertiary/70 text-lg"
+                @click="handleDelete"
+                :loading="loading"
+                :spinnerColor="colors.custom['1']"
             >Delete</Button>
         </div>
     </div>
@@ -28,18 +31,28 @@
 </template>
 
 <script setup>
-import { reactive } from 'vue';
-import Button from '../../../components/form/Button.vue'
+import { reactive, ref } from 'vue';
 import { date } from "../../../utils"
+import tailwindTheme from "../../../utils/theme"
+import { useStore } from 'vuex';
+
+import Button from '../../../components/form/Button.vue'
 import CreateJob from '../CreateJob.vue';
 
-
+const colors = tailwindTheme.theme.colors
 const { job } = defineProps({ job: Object })
-
+const store = useStore()
 const state = reactive({ job, show: false })
+const loading = ref(false)
 
 const handleShow = () => {
     state.show = !state.show
+}
+
+const handleDelete = async () => {
+    loading.value = true
+    await store.dispatch("deleteMyJob", job.id)
+    loading.value = false
 }
 
 const handleEdit = () => {

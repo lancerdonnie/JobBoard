@@ -26,6 +26,14 @@ export default {
       console.error(error);
     }
   },
+  async deleteMyJob(_, payload) {
+    try {
+      const result = await axios.delete(`/my/jobs/${payload}`);
+      return result;
+    } catch (error) {
+      console.error(error);
+    }
+  },
   async applyForJob(_, payload) {
     try {
       const result = await axios.post(

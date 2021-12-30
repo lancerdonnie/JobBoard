@@ -1,6 +1,6 @@
 <template>
     <button class="flex justify-center items-center rounded-[10px] text-white text-[14px]">
-        <Spinner v-if="loading" :size="spinnerSize" />
+        <Spinner v-if="loading" :size="spinnerSize" :color="spinnerColor" />
         <slot v-else></slot>
     </button>
 </template>
@@ -15,6 +15,6 @@ defineProps({
     }, spinnerSize: {
         type: String,
         default: 'small'
-    }
+    }, spinnerColor: String
 })
 </script>
