@@ -11,7 +11,33 @@ export default {
       console.error(error);
     }
   },
-  async getJobs({ commit }, params) {
+  async updateMyJob(_, payload) {
+    try {
+      return await axios.patch(`/my/jobs/${payload.id}`, payload);
+    } catch (error) {
+      console.error(error);
+    }
+  },
+  async createMyJob(_, payload) {
+    try {
+      const result = await axios.post(`/my/jobs`, payload);
+      return result;
+    } catch (error) {
+      console.error(error);
+    }
+  },
+  async applyForJob(_, payload) {
+    try {
+      const result = await axios.post(
+        `/jobs/${payload.id}/apply`,
+        payload.data
+      );
+      return result;
+    } catch (error) {
+      console.error(error);
+    }
+  },
+  async getJobs(_, params) {
     try {
       const res = await axios.get('/jobs', { params });
       return res.data;
@@ -19,7 +45,7 @@ export default {
       console.error(error);
     }
   },
-  async getMyJobs({ commit }, params) {
+  async getMyJobs(_, params) {
     try {
       const res = await axios.get('/my/jobs', { params });
       return res.data;

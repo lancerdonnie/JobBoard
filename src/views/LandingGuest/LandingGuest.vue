@@ -83,7 +83,7 @@
             </div>
         </Footer>
     </div>
-    <ApplyForm v-if="show" @setShow="handleShow" />
+    <ApplyForm v-if="show" @setShow="handleShow" :job="details" />
 </template>    
 
 <script>

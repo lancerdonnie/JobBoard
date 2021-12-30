@@ -24,7 +24,7 @@
             >Delete</Button>
         </div>
     </div>
-    <CreateJob v-if="state.show" @setShow="handleShow" :job="state.job" />
+    <CreateJob v-if="state.show" @setShow="handleShow" :job="state.job" isEdit />
 </template>
 
 <script setup>
