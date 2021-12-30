@@ -8,7 +8,7 @@
 
 
 <script setup>
-import Instagram from '../assets/svg/Instagram.svg'
+import Instagram from '@/assets/svg/Instagram.svg'
 import Twitter from '../assets/svg/twitter.svg'
 import Facebook from '../assets/svg/facebook.svg'
 </script>
