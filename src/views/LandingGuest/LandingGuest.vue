@@ -31,11 +31,11 @@
             :loading="searchLoading"
         />
         <Spinner v-if="loading" :color="colors.primary" class="h-24" />
-        <div v-else-if="jobs.length" class="mt-[110px] px-[95px] bg-custom-5">
+        <div v-else-if="jobs.data.length" class="mt-[110px] px-[95px] bg-custom-5">
             <div
                 class="flex justify-between w-1/2 pr-[23px] text-tertiary leading-[21px] tracking-[0.05em]"
             >
-                <span>showing {{ jobs.length }} results</span>
+                <span>showing {{ jobs.data.length }} results</span>
                 <span class="flex">
                     <span class="text-tertiary/50">Sort by</span>
                     <span class="flex items-center gap-1 cursor-pointer">
@@ -47,7 +47,7 @@
             <div class="flex gap-[46px] mt-10">
                 <div class="flex-1">
                     <JobCard
-                        v-for="job in jobs"
+                        v-for="job in jobs.data"
                         :key="job.id"
                         :job="job"
                         :selected="job.id === details?.id"
@@ -89,7 +89,7 @@
 <script>
 
 import { useStore } from "vuex"
-import { onMounted, reactive, ref, toRefs } from "vue"
+import { onMounted, reactive, ref, toRefs, computed } from "vue"
 import tailwindTheme from "../../utils/theme"
 
 import Nav from '../../components/Nav.vue'
@@ -126,19 +126,13 @@ export default {
     },
     setup() {
         const store = useStore()
-        const state = reactive({ jobs: [], meta: {}, loading: false, searchLoading: false });
+        const state = reactive({ loading: false, searchLoading: false, show: false, search: "" });
         const form = reactive({ first_name: "", last_name: "", email: "", phone: "", location: "", cv: "" });
         const details = ref()
-        const show = ref(false)
-        const search = ref("")
+        const jobs = computed(() => store.state.jobs)
 
         const getJobs = async (params) => {
-            const result = await store.dispatch("getJobs", params)
-            if (result) {
-                const { data, ...rest } = result
-                state.jobs = data
-                state.meta = rest.meta
-            }
+            await store.dispatch("getJobs", params)
         }
 
         onMounted(async () => {
@@ -149,7 +143,7 @@ export default {
 
         const handleSearch = async () => {
             state.searchLoading = true
-            await getJobs({ q: search.value })
+            await getJobs({ q: state.search })
             state.searchLoading = false
         }
 
@@ -158,12 +152,12 @@ export default {
         }
 
         const handleShow = () => {
-            show.value = !show.value
+            state.show = !state.show
         }
 
         const handlePageClick = () => { }
 
-        return { ...toRefs(state), ...toRefs(form), handleCardClick, handlePageClick, handleShow, handleSearch, search, show, details, colors: tailwindTheme.theme.colors }
+        return { ...toRefs(state), ...toRefs(form), jobs, handleCardClick, handlePageClick, handleShow, handleSearch, details, colors: tailwindTheme.theme.colors }
     }
 }
 

@@ -42,7 +42,7 @@
                 </Button>
             </div>
             <Spinner v-if="loading" :color="colors.primary" class="h-24" />
-            <JobTable v-else-if="jobs.length" :jobs="jobs" />
+            <JobTable v-else-if="jobs.data.length" :jobs="jobs.data" />
             <div v-else>No Jobs Available</div>
         </div>
         <Footer class="flex text-white text-lg">
@@ -80,31 +80,17 @@ import Notification from '../../assets/svg/notification.svg'
 import ForEmployers from "../../assets/svg/for_employers.svg"
 
 import { useStore } from "vuex"
-import { onMounted, reactive, toRefs, ref } from "vue"
+import { onMounted, reactive, toRefs, computed } from "vue"
 import tailwindTheme from "../../utils/theme"
 
-
-const store = useStore()
-const state = reactive({ jobs: [], meta: {}, loading: false, searchLoading: false });
-const show = ref(false)
-const search = ref("")
-
 const colors = tailwindTheme.theme.colors
-
-const { jobs, meta, loading, searchLoading } = toRefs(state)
-
-const handleShow = () => {
-    show.value = !show.value
-}
-
+const store = useStore()
+const state = reactive({ loading: false, searchLoading: false, show: false, search: "" });
+const { loading, searchLoading, show, search } = toRefs(state)
+const jobs = computed(() => store.state.myJobs)
 
 const getJobs = async (params) => {
-    const result = await store.dispatch("getMyJobs", params)
-    if (result) {
-        const { data, ...rest } = result
-        state.jobs = data
-        state.meta = rest.meta
-    }
+    await store.dispatch("getMyJobs", params)
 }
 
 onMounted(async () => {
@@ -113,10 +99,13 @@ onMounted(async () => {
     state.loading = false
 });
 
+const handleShow = () => {
+    state.show = !state.show
+}
 
 const handleSearch = async () => {
     state.searchLoading = true
-    await getJobs({ q: search.value })
+    await getJobs({ q: state.search })
     state.searchLoading = false
 }
 </script>

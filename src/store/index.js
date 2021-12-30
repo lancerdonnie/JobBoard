@@ -5,7 +5,9 @@ import actions from './actions';
 const debug = !import.meta.env.PROD;
 
 const state = {
-  token: localStorage.getItem('token') || null
+  token: localStorage.getItem('token') || null,
+  myJobs: { data: [] },
+  jobs: { data: [] }
 };
 
 export default createStore({

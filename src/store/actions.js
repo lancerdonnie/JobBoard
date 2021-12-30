@@ -11,24 +11,28 @@ export default {
       console.error(error);
     }
   },
-  async updateMyJob(_, payload) {
+  async updateMyJob({ dispatch }, payload) {
     try {
-      return await axios.patch(`/my/jobs/${payload.id}`, payload);
-    } catch (error) {
-      console.error(error);
-    }
-  },
-  async createMyJob(_, payload) {
-    try {
-      const result = await axios.post(`/my/jobs`, payload);
+      const result = await axios.patch(`/my/jobs/${payload.id}`, payload);
+      dispatch('getMyJobs');
       return result;
     } catch (error) {
       console.error(error);
     }
   },
-  async deleteMyJob(_, payload) {
+  async createMyJob({ dispatch }, payload) {
+    try {
+      const result = await axios.post(`/my/jobs`, payload);
+      dispatch('getMyJobs');
+      return result;
+    } catch (error) {
+      console.error(error);
+    }
+  },
+  async deleteMyJob({ dispatch }, payload) {
     try {
       const result = await axios.delete(`/my/jobs/${payload}`);
+      dispatch('getMyJobs');
       return result;
     } catch (error) {
       console.error(error);
@@ -45,18 +49,18 @@ export default {
       console.error(error);
     }
   },
-  async getJobs(_, params) {
+  async getJobs({ commit }, params) {
     try {
       const res = await axios.get('/jobs', { params });
-      return res.data;
+      commit('SET_JOBS', res.data);
     } catch (error) {
       console.error(error);
     }
   },
-  async getMyJobs(_, params) {
+  async getMyJobs({ commit }, params) {
     try {
       const res = await axios.get('/my/jobs', { params });
-      return res.data;
+      commit('SET_MY_JOBS', res.data);
     } catch (error) {
       console.error(error);
     }
