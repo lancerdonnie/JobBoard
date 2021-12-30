@@ -14,7 +14,9 @@
                     <li class="mr-[17.5px] cursor-pointer opacity-60">Find Salaries</li>
                     <li
                         class="rounded-md cursor-pointer text-base font-extrabold p-[10px] bg-white text-primary"
-                    >Post Job</li>
+                    >
+                        <router-link to="/login">Post Job</router-link>
+                    </li>
                 </ul>
             </template>
 

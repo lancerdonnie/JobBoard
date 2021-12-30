@@ -23,7 +23,7 @@
             <Input class="w-full mt-[42px]" v-model="name" label="Name" />
             <Input class="w-full mt-[42px]" v-model="email" label="Email" />
             <Input class="w-full mt-[42px]" v-model="password" label="Password" type="password" />
-            <div class="mt-[40px] self-start text-center">
+            <div class="mt-[40px] self-start flex items-center gap-4">
                 <Button
                     type="submit"
                     class="bg-primary font-extrabold px-[62.5px] py-[23px] text-white text-[18px] leading-[22px] tracking-[0.12em]"
