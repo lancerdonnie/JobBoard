@@ -104,8 +104,8 @@ import JobDetails from "./JobDetails.vue"
 import FooterLinks from "./FooterLinks.vue"
 import Pagination from "../../components/Pagination.vue"
 
-import Logo from '../../assets/logo.svg'
-import AngleB from '../../assets/angle_b.svg'
+import Logo from '../../assets/svg/logo.svg'
+import AngleB from '../../assets/svg/angle_b.svg'
 
 export default {
     components: {

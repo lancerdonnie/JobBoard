@@ -13,6 +13,6 @@
 </template>
 
 <script setup>
-import Pointer from '../assets/pointer.svg'
+import Pointer from '../assets/svg/pointer.svg'
 import Search from './Search.vue';
 </script>

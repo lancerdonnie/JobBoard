@@ -30,7 +30,7 @@
 import { ref } from 'vue';
 
 import Button from './Button.vue';
-import Upload from "../../assets/upload.svg";
+import Upload from "../../assets/svg/upload.svg";
 
 const input = ref(null)
 const file = ref()

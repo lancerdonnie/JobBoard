@@ -34,7 +34,7 @@ import { reactive, toRefs } from "vue"
 import Modal from "../../components/Modal.vue"
 import Input from "../../components/form/Input.vue"
 import Button from "../../components/form/Button.vue";
-import Pointer from "../../assets/pointer.svg";
+import Pointer from "../../assets/svg/pointer.svg";
 import File from "../../components/form/File.vue";
 
 const emit = defineEmits(["setShow"])
