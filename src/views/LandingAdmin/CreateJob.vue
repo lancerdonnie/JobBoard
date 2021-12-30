@@ -11,14 +11,23 @@
             </div>
             <form class="mt-10">
                 <Input label="Job Title" v-model="title" class="mb-11" />
+                <Input label="Description" v-model="description" class="mb-11" />
                 <Input label="Company Name" v-model="company" class="mb-11" />
                 <Input label="location" v-model="location" class="mb-11" />
                 <Select label="What type of employment is it?" v-model="type" class="mb-11">
-                    <option value="Part">Part Remote</option>
-                    <option value="Temporarily Remote">Temporarily Remote</option>
-                    <option value="Fulltime">Fulltime</option>
-                    <option value="Part-time">Part-time</option>
+                    <option value="Full-time">Full-time</option>
+                    <option value="Temporary">Temporary</option>
+                    <option value="Contract">Contract</option>
+                    <option value="Permanent">Permanent</option>
+                    <option value="Internship">Internship</option>
+                    <option value="Volunteer">Volunteer</option>
                 </Select>
+                <Select label="Work Conditions" v-model="work_condition" class="mb-11">
+                    <option value="Remote">Remote</option>
+                    <option value="Part Remote">Part Remote</option>
+                    <option value="On-Premise">On-Premise</option>
+                </Select>
+                <Input label="Benefits" v-model="benefits" class="mb-11" />
                 <Input label="Salary range" v-model="salary" class="mb-11" />
                 <Input label="Submission deadline" class="mb-11" />
                 <Select
@@ -27,8 +36,10 @@
                     class="mb-11"
                 >
                     <option value="Tech">Tech</option>
-                    <option value="Farming">Farming</option>
-                    <option value="Finance">Finance</option>
+                    <option value="Health care">Health care</option>
+                    <option value="Hospitality">Hospitality</option>
+                    <option value="Hospitality">Hospitality</option>
+                    <option value="Marketing">Marketing</option>
                 </Select>
                 <Button
                     class="w-full h-[73px] text-[18px] bg-primary"

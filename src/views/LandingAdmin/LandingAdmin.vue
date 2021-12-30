@@ -27,7 +27,7 @@
         </Nav>
         <div class="mt-[110px] px-[95px] bg-custom-5 leading-[21.09px] text-lg">
             <div class="flex justify-between items-center">
-                <SearchShort class="w-[506px]" />
+                <Search class="w-[506px]" v-model="search" @click="handleSearch" />
                 <Button
                     class="bg-custom-3 px-[28px] py-[12.5px] rounded-[10px] text-white shadow-button flex items-center"
                     @click="handleShow"
@@ -64,7 +64,7 @@ import Nav from '../../components/Nav.vue'
 import Footer from '../../components/Footer.vue'
 import Socials from '../../components/Socials.vue'
 import Spinner from '../../components/Spinner.vue'
-import SearchShort from '../../components/SearchShort.vue'
+import Search from '../../components/Search.vue'
 import JobTable from './Table/JobTable.vue'
 import CreateJob from './CreateJob.vue'
 import Button from '../../components/form/Button.vue'
@@ -82,6 +82,7 @@ import tailwindTheme from "../../utils/theme"
 const store = useStore()
 const state = reactive({ jobs: [], meta: {}, loading: false });
 const show = ref(false)
+const search = ref("")
 
 const colors = tailwindTheme.theme.colors
 
@@ -89,6 +90,10 @@ const { jobs, meta, loading } = toRefs(state)
 
 const handleShow = () => {
     show.value = !show.value
+}
+
+const handleSearch = () => {
+    console.log(search.value)
 }
 
 onMounted(async () => {

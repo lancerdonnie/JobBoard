@@ -24,7 +24,11 @@
                 >Find Your Dream Job</p>
             </template>
         </Nav>
-        <Search class="relative mt-[-30px] mx-28 z-10" />
+        <SearchLocation
+            v-model="search"
+            @click="handleSearch"
+            class="relative mt-[-30px] mx-28 z-10"
+        />
         <Spinner v-if="loading" :color="colors.primary" class="h-24" />
         <div v-else-if="jobs.length" class="mt-[110px] px-[95px] bg-custom-5">
             <div
@@ -88,7 +92,7 @@ import { onMounted, reactive, ref, toRefs } from "vue"
 import tailwindTheme from "../../utils/theme"
 
 import Nav from '../../components/Nav.vue'
-import Search from '../../components/Search.vue'
+import SearchLocation from '../../components/SearchLocation.vue'
 import Footer from '../../components/Footer.vue'
 import Socials from '../../components/Socials.vue'
 import Spinner from '../../components/Spinner.vue'
@@ -106,7 +110,7 @@ import AngleB from '../../assets/angle_b.svg'
 export default {
     components: {
         Nav,
-        Search,
+        SearchLocation,
         Footer,
         Socials,
         Logo,
@@ -125,12 +129,16 @@ export default {
         const form = reactive({ first_name: "", last_name: "", email: "", phone: "", location: "", cv: "" });
         const details = ref()
         const show = ref(false)
+        const search = ref("")
 
         onMounted(async () => {
             state.loading = true
-            const { data, ...rest } = await store.dispatch("getJobs")
-            state.jobs = data
-            state.meta = rest.meta
+            const result = await store.dispatch("getJobs")
+            if (result) {
+                const { data, ...rest } = result
+                state.jobs = data
+                state.meta = rest.meta
+            }
             state.loading = false
         });
 
@@ -142,7 +150,15 @@ export default {
             show.value = !show.value
         }
 
-        return { ...toRefs(state), ...toRefs(form), handleCardClick, handleShow, show, details, colors: tailwindTheme.theme.colors }
+        const handleSearch = () => {
+            console.log(search.value)
+        }
+
+        const handlePageClick = () => {
+
+        }
+
+        return { ...toRefs(state), ...toRefs(form), handleCardClick, handlePageClick, handleShow, handleSearch, search, show, details, colors: tailwindTheme.theme.colors }
     }
 }
 
