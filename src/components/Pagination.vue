@@ -1,14 +1,14 @@
 <template>
     <ul class="flex gap-3">
         <li
-            class="text-[14px] h-[37px] w-[36px] rounded flex items-center justify-center border-primary border-[0.2px] border-solid cursor-pointer"
+            class="text-sm h-[37px] w-[36px] rounded flex items-center justify-center border-primary border-[0.2px] border-solid cursor-pointer"
             v-if="size > maxSize && offset > 0"
             @click="offset = offset - 1"
         >
             <AngleL />
         </li>
         <li
-            class="text-[14px] h-[37px] w-[36px] rounded flex items-center justify-center border-primary border-[0.2px] border-solid cursor-pointer"
+            class="text-sm h-[37px] w-[36px] rounded flex items-center justify-center border-primary border-[0.2px] border-solid cursor-pointer"
             :class="{ 'bg-primary text-white': selected === (index + 1 + offset), 'text-primary': !selected }"
             v-for="(_,index) in Array.from({ length: size > maxSize ? maxSize : size })"
             :key="index"
@@ -16,7 +16,7 @@
         >{{ index + 1 + offset }}</li>
 
         <li
-            class="text-[14px] h-[37px] w-[36px] rounded flex items-center justify-center border-primary border-[0.2px] border-solid cursor-pointer"
+            class="text-sm h-[37px] w-[36px] rounded flex items-center justify-center border-primary border-[0.2px] border-solid cursor-pointer"
             v-if="size > maxSize && offset < (size - maxSize)"
             @click="offset = offset + 1"
         >

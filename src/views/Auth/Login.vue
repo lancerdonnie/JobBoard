@@ -25,7 +25,7 @@
             <div class="mt-[40px] self-start flex items-center gap-4">
                 <Button
                     type="submit"
-                    class="bg-primary font-extrabold px-[62.5px] py-[23px] text-white text-[18px] leading-[22px] tracking-[0.12em]"
+                    class="bg-primary font-extrabold px-[62.5px] py-[23px] text-white text-lg leading-[22px] tracking-[0.12em]"
                     :loading="loading"
                 >Login</Button>
                 <span class="text-primary mt-2">
@@ -65,7 +65,7 @@ const login = async () => {
         password: password.value
     })
     if (res) {
-        router.push("/")
+        router.push("/myjobs")
     }
     loading.value = false
 }

@@ -4,7 +4,7 @@
             class="mb-13 text-lg tracking-[0.12em] leading-[21px] text-primary font-semibold"
         >{{ label }}</label>
         <input
-            class="block bg-white rounded-[10px] border-primary border-[0.5px] w-full text-[18px] p-[23px]"
+            class="block bg-white rounded-[10px] border-primary border-[0.5px] w-full text-lg p-[23px]"
             :value="props.modelValue"
             @input="updateValue($event.target.value)"
             :type="type"

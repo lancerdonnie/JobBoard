@@ -42,7 +42,7 @@
                     <option value="Marketing">Marketing</option>
                 </Select>
                 <Button
-                    class="w-full h-[73px] text-[18px] bg-primary"
+                    class="w-full h-[73px] text-lg bg-primary"
                     spinnerSize="medium"
                     type="submit"
                     :loading="loading"

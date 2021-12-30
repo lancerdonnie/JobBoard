@@ -14,7 +14,7 @@
         </div>
         <div class="mt-[18px] text-sm leading-[16px]">{{ job.description }}</div>
         <Button
-            :class="['ml-auto block px-[15.5px] py-[8px] rounded-[10px] text-white text-[14px] mt-4 leading-[16px] font-semibold',
+            :class="['ml-auto block px-[15.5px] py-[8px] rounded-[10px] text-white text-sm mt-4 leading-[16px] font-semibold',
                 selected ? ['bg-white', 'text-custom-3'] : 'bg-custom-3',
             
             ]"

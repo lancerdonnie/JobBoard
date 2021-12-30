@@ -7,7 +7,7 @@
                 {{ details.location }}
             </div>
             <Button
-                class="bg-primary px-[36px] py-[10px] text-white text-[14px] mt-9"
+                class="bg-primary px-[36px] py-[10px] text-white text-sm mt-9"
                 @click="emit('click')"
             >Apply Via Find Job</Button>
         </div>

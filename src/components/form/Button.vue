@@ -1,5 +1,5 @@
 <template>
-    <button class="flex justify-center items-center rounded-[10px] text-white text-[14px]">
+    <button class="flex justify-center items-center rounded-[10px] text-white text-sm">
         <Spinner v-if="loading" :size="spinnerSize" :color="spinnerColor" />
         <slot v-else></slot>
     </button>

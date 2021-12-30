@@ -20,7 +20,7 @@
                 <Input label="Phone Number" v-model="phone" class="mb-11" />
                 <File class="mb-11" />
                 <Button
-                    class="w-full h-[73px] text-[18px] bg-primary"
+                    class="w-full h-[73px] text-lg bg-primary"
                     spinnerSize="medium"
                     type="submit"
                     :loading="loading"
