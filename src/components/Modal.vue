@@ -19,7 +19,7 @@
 </template>
 
 <script setup>
-import Close from "../assets/svg/close.svg"
+import Close from "@/assets/svg/close.svg"
 
 const emit = defineEmits(['setShow'])
 

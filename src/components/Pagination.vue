@@ -27,8 +27,8 @@
 
 <script setup>
 import { ref } from "vue"
-import AngleR from "../assets/svg/angle_r.svg"
-import AngleL from "../assets/svg/angle_l.svg"
+import AngleR from "@/assets/svg/angle_r.svg"
+import AngleL from "@/assets/svg/angle_l.svg"
 
 const selected = ref(1)
 const offset = ref(0)

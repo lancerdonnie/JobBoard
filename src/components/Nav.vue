@@ -10,6 +10,6 @@
 </template>
 
 <script setup>
-import Logo from "../assets/svg/logo.svg"
+import Logo from "@/assets/svg/logo.svg"
 import Circles from "./Circles.vue"
 </script>

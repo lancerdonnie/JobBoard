@@ -69,8 +69,8 @@ import { ref } from "vue"
 import { useRouter } from "vue-router"
 import { useStore } from "vuex"
 
-import ForEmployers from "../assets/svg/for_employers.svg"
-import Logo from "../assets/svg/logo.svg"
+import ForEmployers from "@/assets/svg/for_employers.svg"
+import Logo from "@/assets/svg/logo.svg"
 import Circles from "../components/Circles.vue"
 
 const email = ref("")

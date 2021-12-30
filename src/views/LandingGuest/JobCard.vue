@@ -25,7 +25,7 @@
 
 <script setup>
 import Button from '../../components/form/Button.vue';
-import Pointer from "../../assets/svg/pointer.svg"
+import Pointer from "@/assets/svg/pointer.svg"
 
 defineProps({
     job: {

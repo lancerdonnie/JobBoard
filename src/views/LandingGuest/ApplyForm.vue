@@ -37,7 +37,7 @@ import { useStore } from "vuex";
 import Modal from "../../components/Modal.vue"
 import Input from "../../components/form/Input.vue"
 import Button from "../../components/form/Button.vue";
-import Pointer from "../../assets/svg/pointer.svg";
+import Pointer from "@/assets/svg/pointer.svg";
 import File from "../../components/form/File.vue";
 
 const store = useStore()

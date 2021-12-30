@@ -74,10 +74,10 @@ import JobTable from './Table/JobTable.vue'
 import CreateJob from './CreateJob.vue'
 import Button from '../../components/form/Button.vue'
 
-import Plus from '../../assets/svg/plus.svg'
-import Logo from '../../assets/svg/logo.svg'
-import Notification from '../../assets/svg/notification.svg'
-import ForEmployers from "../../assets/svg/for_employers.svg"
+import Plus from '@/assets/svg/plus.svg'
+import Logo from '@/assets/svg/logo.svg'
+import Notification from '@/assets/svg/notification.svg'
+import ForEmployers from '@/assets/svg/for_employers.svg'
 
 import { useStore } from "vuex"
 import { onMounted, reactive, toRefs, computed } from "vue"
