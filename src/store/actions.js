@@ -11,19 +11,18 @@ export default {
       console.error(error);
     }
   },
-  async getJobs({ commit }, payload) {
+  async getJobs({ commit }, params) {
     try {
-      const res = await axios.get('/jobs', payload);
+      const res = await axios.get('/jobs', { params });
       return res.data;
     } catch (error) {
       console.error(error);
     }
   },
-  async getMyJobs({ commit }, payload) {
+  async getMyJobs({ commit }, params) {
     try {
-      const res = await axios.get('/my/jobs', payload);
+      const res = await axios.get('/my/jobs', { params });
       return res.data;
-      console.log(res);
     } catch (error) {
       console.error(error);
     }

@@ -14,7 +14,7 @@
                     <img
                         class="rounded-full h-[50px] w-[50px] ml-[17px]"
                         src="https://ui-avatars.com/api/?name=Jide Adedeji"
-                        alt
+                        alt="profile_picture"
                     />
                 </div>
             </template>
@@ -27,7 +27,12 @@
         </Nav>
         <div class="mt-[110px] px-[95px] bg-custom-5 leading-[21.09px] text-lg">
             <div class="flex justify-between items-center">
-                <Search class="w-[506px]" v-model="search" @click="handleSearch" />
+                <Search
+                    class="w-[506px]"
+                    v-model="search"
+                    @click="handleSearch"
+                    :loading="searchLoading"
+                />
                 <Button
                     class="bg-custom-3 px-[28px] py-[12.5px] rounded-[10px] text-white shadow-button flex items-center"
                     @click="handleShow"
@@ -80,27 +85,38 @@ import tailwindTheme from "../../utils/theme"
 
 
 const store = useStore()
-const state = reactive({ jobs: [], meta: {}, loading: false });
+const state = reactive({ jobs: [], meta: {}, loading: false, searchLoading: false });
 const show = ref(false)
 const search = ref("")
 
 const colors = tailwindTheme.theme.colors
 
-const { jobs, meta, loading } = toRefs(state)
+const { jobs, meta, loading, searchLoading } = toRefs(state)
 
 const handleShow = () => {
     show.value = !show.value
 }
 
-const handleSearch = () => {
-    console.log(search.value)
+
+const getJobs = async (params) => {
+    const result = await store.dispatch("getMyJobs", params)
+    if (result) {
+        const { data, ...rest } = result
+        state.jobs = data
+        state.meta = rest.meta
+    }
 }
 
 onMounted(async () => {
     state.loading = true
-    const { data, ...rest } = await store.dispatch("getMyJobs")
-    state.jobs = data
-    state.meta = rest.meta
+    await getJobs()
     state.loading = false
 });
+
+
+const handleSearch = async () => {
+    state.searchLoading = true
+    await getJobs({ q: search.value })
+    state.searchLoading = false
+}
 </script>

@@ -28,6 +28,7 @@
             v-model="search"
             @click="handleSearch"
             class="relative mt-[-30px] mx-28 z-10"
+            :loading="searchLoading"
         />
         <Spinner v-if="loading" :color="colors.primary" class="h-24" />
         <div v-else-if="jobs.length" class="mt-[110px] px-[95px] bg-custom-5">
@@ -125,22 +126,32 @@ export default {
     },
     setup() {
         const store = useStore()
-        const state = reactive({ jobs: [], meta: {}, loading: false });
+        const state = reactive({ jobs: [], meta: {}, loading: false, searchLoading: false });
         const form = reactive({ first_name: "", last_name: "", email: "", phone: "", location: "", cv: "" });
         const details = ref()
         const show = ref(false)
         const search = ref("")
 
-        onMounted(async () => {
-            state.loading = true
-            const result = await store.dispatch("getJobs")
+        const getJobs = async (params) => {
+            const result = await store.dispatch("getJobs", params)
             if (result) {
                 const { data, ...rest } = result
                 state.jobs = data
                 state.meta = rest.meta
             }
+        }
+
+        onMounted(async () => {
+            state.loading = true
+            await getJobs()
             state.loading = false
         });
+
+        const handleSearch = async () => {
+            state.searchLoading = true
+            await getJobs({ q: search.value })
+            state.searchLoading = false
+        }
 
         const handleCardClick = (job) => {
             details.value = job
@@ -150,13 +161,7 @@ export default {
             show.value = !show.value
         }
 
-        const handleSearch = () => {
-            console.log(search.value)
-        }
-
-        const handlePageClick = () => {
-
-        }
+        const handlePageClick = () => { }
 
         return { ...toRefs(state), ...toRefs(form), handleCardClick, handlePageClick, handleShow, handleSearch, search, show, details, colors: tailwindTheme.theme.colors }
     }
