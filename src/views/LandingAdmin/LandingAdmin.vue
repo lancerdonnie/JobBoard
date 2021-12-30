@@ -10,12 +10,13 @@
             </template>
             <template v-slot:right-content>
                 <div class="flex items-center text-white text-lg">
-                    <Notification />
+                    <Notification class="cursor-pointer" />
                     <img
-                        class="rounded-full h-[50px] w-[50px] ml-[17px]"
-                        src="https://ui-avatars.com/api/?name=Jide Adedeji"
+                        class="rounded-full h-[50px] w-[50px] mx-[17px] cursor-pointer"
+                        :src="avatar"
                         alt="profile_picture"
                     />
+                    <Logout class="cursor-pointer" @click="logout" />
                 </div>
             </template>
 
@@ -43,7 +44,10 @@
             </div>
             <Spinner v-if="loading" :color="colors.primary" class="h-24" />
             <JobTable v-else-if="jobs.data.length" :jobs="jobs.data" />
-            <div v-else>No Jobs Available</div>
+            <div
+                class="flex justify-center items-center h-40 font-semibold text-primary"
+                v-else
+            >No Jobs Available</div>
         </div>
         <Footer class="flex text-white text-lg">
             <div class="flex-1 flex justify-between items-center">
@@ -78,19 +82,28 @@ import Plus from '@/assets/svg/plus.svg'
 import Logo from '@/assets/svg/logo.svg'
 import Notification from '@/assets/svg/notification.svg'
 import ForEmployers from '@/assets/svg/for_employers.svg'
+import Logout from '@/assets/svg/logout.svg'
 
-import { useStore } from "vuex"
 import { onMounted, reactive, toRefs, computed } from "vue"
+import { useStore } from "vuex"
 import tailwindTheme from "../../utils/theme"
+import { useRouter } from 'vue-router'
 
 const colors = tailwindTheme.theme.colors
 const store = useStore()
+const router = useRouter()
+const avatar = store.state.user.avatar
 const state = reactive({ loading: false, searchLoading: false, show: false, search: "" });
 const { loading, searchLoading, show, search } = toRefs(state)
 const jobs = computed(() => store.state.myJobs)
 
 const getJobs = async (params) => {
     await store.dispatch("getMyJobs", params)
+}
+
+const logout = async () => {
+    const res = await store.dispatch("logout")
+    if (res) router.push("/login")
 }
 
 onMounted(async () => {

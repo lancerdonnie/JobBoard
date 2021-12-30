@@ -5,9 +5,9 @@
         >{{ label }}</label>
         <input
             class="block bg-white rounded-[10px] border-primary border-[0.5px] w-full text-[18px] p-[23px]"
-            type="text"
             :value="props.modelValue"
             @input="updateValue($event.target.value)"
+            :type="type"
         />
     </div>
 </template>
@@ -18,7 +18,9 @@ const props = defineProps({
     label: {
         type: String,
         required: true
-    }, modelValue: String
+    },
+    modelValue: String,
+    type: String
 })
 
 const emit = defineEmits(['update:modelValue'])

@@ -63,7 +63,7 @@ import { useStore } from "vuex";
 
 const store = useStore()
 
-const props = defineProps({ job: { type: Object, default: {}, isEdit: Boolean } })
+const props = defineProps({ job: { type: Object, default: {} }, isEdit: Boolean })
 const emit = defineEmits(["setShow"])
 
 const loading = ref(false)

@@ -59,7 +59,10 @@
                 </div>
             </div>
         </div>
-        <div v-else>No Jobs Available</div>
+        <div
+            class="flex justify-center items-center h-40 font-semibold text-primary"
+            v-else
+        >No Jobs Available</div>
 
         <Pagination :size="7" class="mt-10 mb-[117px] ml-[95px]" @click="handlePageClick" />
 

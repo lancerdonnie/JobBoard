@@ -4,14 +4,16 @@ import store from '../store';
 
 import LandingGuest from '../views/LandingGuest/LandingGuest.vue';
 import LandingAdmin from '../views/LandingAdmin/LandingAdmin.vue';
-import Login from '../views/Login.vue';
+import Login from '../views/Auth/Login.vue';
+import Register from '../views/Auth/Register.vue';
 
 const routes = [
   {
     path: '/',
-    redirect: () => {
-      return { path: store.state.token ? 'myjobs' : '/jobs' };
-    }
+    redirect: '/jobs'
+    // redirect: () => {
+    //   return { path: store.state.token ? 'myjobs' : '/jobs' };
+    // }
   },
   {
     path: '/jobs',
@@ -19,11 +21,21 @@ const routes = [
   },
   {
     path: '/myjobs',
-    component: LandingAdmin
+    component: LandingAdmin,
+    meta: {
+      requiresAuth: true
+    }
   },
   {
     path: '/login',
-    component: Login
+    component: Login,
+    meta: {
+      hideForAuth: true
+    }
+  },
+  {
+    path: '/register',
+    component: Register
   }
 ];
 
@@ -32,10 +44,13 @@ const router = createRouter({
   routes
 });
 
-// router.beforeEach(async (to, from) => {
-//   // canUserAccess() returns `true` or `false`
-//   const canAccess = await canUserAccess(to)
-//   if (!canAccess) return '/login'
-// })
+router.beforeEach(async (to) => {
+  if (to.matched.some((record) => record.meta.hideForAuth)) {
+    if (store.state.token) return '/myjobs';
+  }
+  if (to.matched.some((record) => record.meta.requiresAuth)) {
+    if (!store.state.token) return '/login';
+  }
+});
 
 export default router;
