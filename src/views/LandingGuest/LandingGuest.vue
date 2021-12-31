@@ -60,13 +60,12 @@
                     <JobDetails v-if="details" :details="details" @click="handleShow" />
                 </div>
             </div>
+            <Pagination :size="7" class="mt-10 mb-[117px]" @click="handlePageClick" />
         </div>
         <div
             class="flex justify-center items-center h-40 font-semibold text-primary"
             v-else
         >No Jobs Available</div>
-
-        <Pagination :size="7" class="mt-10 mb-[117px] ml-[95px] md:ml-2" @click="handlePageClick" />
 
         <Footer class="flex text-white text-lg gap-20 md:flex-col md:gap-0">
             <div class="flex-1 flex justify-between md:flex-col md:items-center">
