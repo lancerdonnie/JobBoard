@@ -28,3 +28,4 @@ Url: [Job Board](https://jobs.babajideadedeji.com)<br/>
 #### Commands
 
 - start: `npm run dev`
+- test: `npm test`
