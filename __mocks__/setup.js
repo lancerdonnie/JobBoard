@@ -9,8 +9,8 @@ const state = {
   user: {
     avatar: ''
   },
-  myJobs: { data: data },
-  jobs: { data: data }
+  myJobs: data,
+  jobs: data
 };
 
 const store = new Vuex.Store({

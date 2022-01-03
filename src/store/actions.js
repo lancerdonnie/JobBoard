@@ -1,4 +1,6 @@
 import { axios } from '../utils';
+import app from '@/main';
+import data from '../utils/data';
 
 export default {
   async login({ commit, dispatch }, payload) {
@@ -85,6 +87,8 @@ export default {
       commit('SET_JOBS', res.data);
     } catch (error) {
       console.error(error);
+      commit('SET_JOBS', data);
+      app.$toast.warning(`Error fetching data. Loading from cache`);
     }
   },
   async getMyJobs({ commit }, params) {
